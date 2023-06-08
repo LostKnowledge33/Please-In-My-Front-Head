@@ -1,0 +1,29 @@
+void minimumBribes(vector<int> q) {
+    int answer = 0;
+    
+    for (int i = q.size() - 1; i >= 0; i--)
+    {
+        if (q[i] == i + 1) continue;
+        
+        int bribe = 0;
+        for (int j = i - 1; j >= 0; j--)
+        {
+            int temp = q[i];
+            q[i] = q[j];
+            q[j] = temp;
+            bribe++;
+            
+            if (bribe > 2)
+            {
+                cout << "Too chaotic" << endl;
+                return;
+            }
+            
+            if(i + 1 == q[i]) break;    
+        }
+
+        answer += bribe;
+    }
+
+    cout << answer << endl;
+}
