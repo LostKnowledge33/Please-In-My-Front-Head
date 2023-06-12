@@ -1,0 +1,8 @@
+string biggerIsGreater(string w) {
+
+    string origin = w;
+    next_permutation(w.begin(), w.end());
+
+    if(origin >= w) return "no answer";
+    else return w;
+}
