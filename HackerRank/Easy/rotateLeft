@@ -1,0 +1,13 @@
+vector<int> rotateLeft(int d, vector<int> arr) {
+    
+    vector<int> answer;
+    int size = arr.size();
+    int rotate = d % size;
+
+    for (int i = 0; i < arr.size(); i++)
+    {
+        answer.push_back(arr[(i + d) % arr.size()]);
+    }
+    
+    return answer;
+}
