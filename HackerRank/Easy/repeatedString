@@ -1,0 +1,13 @@
+long repeatedString(string s, long n) {
+    long count = 0, answer = 0;
+
+    for (int i = 0; i < s.length(); i++)
+        if (s[i] == 'a') count++;
+    
+    answer += (n / s.length()) * count;
+
+    for (int i = 0; i < n % s.length(); i++)
+        if (s[i] == 'a') answer++;
+        
+    return answer;
+}
