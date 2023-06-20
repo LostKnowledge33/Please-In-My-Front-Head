@@ -1,0 +1,32 @@
+vector<int> getMax(vector<string> operations) {
+    int max = 0;
+    int operation[2];
+    stack<pair<int, int>> s;
+    vector<int> answer;
+    
+    for(int i = 0; i < operations.size(); i++)
+    {
+        string temp = operations[i];
+        size_t pos = temp.find(" ");
+        operation[0] = stoi(temp.substr(0, pos));
+              
+        switch(operation[0])
+        {
+            case 1:
+                operation[1] = stoi(temp.substr(pos, temp.size()));
+                if(operation[1] > max) max = operation[1];
+                s.push(make_pair(operation[1], max));
+                break;
+            case 2:
+                s.pop();
+                if(s.empty()) max = 0;
+                else max = s.top().second;
+                break;
+            case 3:
+                answer.push_back(s.top().second);
+                break;
+        }
+    }
+    
+    return answer;
+}
