@@ -1,0 +1,8 @@
+unsigned long long taumBday(int b, int w, int bc, int wc, int z) {
+    
+    unsigned long long blackCount = (long)b * (min((long)bc, (long)wc + (long)z));
+    unsigned long long whiteCount = (long)w * (min((long)wc, (long)bc + (long)z));
+
+    cout << blackCount + whiteCount << endl;
+    return blackCount + whiteCount;
+}
