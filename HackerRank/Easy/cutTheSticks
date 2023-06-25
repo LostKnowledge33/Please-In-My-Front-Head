@@ -1,0 +1,22 @@
+vector<int> cutTheSticks(vector<int> arr) {
+     
+    vector<int> answer;
+    while(!arr.empty())
+    {
+        int cut = *min_element(arr.begin(), arr.end());
+        int cnt = 0;
+        for(int i = 0; i < arr.size(); i++)
+        {
+           arr[i] -= cut;
+           cnt++;
+           if(arr[i] <= 0)
+           {
+               arr.erase(arr.begin() + i);
+               i--;
+           }
+        }
+        answer.push_back(cnt);
+    }
+    
+    return answer;
+}
