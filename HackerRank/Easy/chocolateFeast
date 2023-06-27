@@ -1,0 +1,17 @@
+int chocolateFeast(int n, int c, int m) {
+
+    int chocolate = n / c;
+    int wrapper = chocolate;
+    int answer = chocolate;
+    
+    while(true)
+    {
+        chocolate = wrapper / m;
+        wrapper %= m;
+        answer += chocolate;
+        wrapper += chocolate;
+        if(!chocolate) break;
+    }
+    
+    return answer;
+}
