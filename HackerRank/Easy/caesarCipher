@@ -1,0 +1,30 @@
+string caesarCipher(string s, int k) {
+    k %= 26;
+    
+    for (int i = 0; i < s.length(); i++)
+    {
+        unsigned char t = s[i];
+        if (isupper(s[i]))
+        {
+            t += k;
+            if (t > 90)
+            {
+                t %= 90;
+                t += 64;
+            }
+        }
+        else if (islower(s[i]))
+        {
+            t += k;
+            if (t > 122)
+            {
+                t %= 122;
+                t += 96;
+            }
+        }
+
+        s[i] = t;
+    }
+    
+    return s;
+}
