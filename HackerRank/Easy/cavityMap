@@ -1,0 +1,16 @@
+vector<string> cavityMap(vector<string> grid) {
+    
+    int xy[2];
+    for(int i = 1; i < grid.size() - 1; i++)
+    {
+        for(int j = 1; j < grid[i].length() - 1; j++)
+        {
+            int depth = grid[i][j];
+            if(depth > grid[i - 1][j] && depth > grid[i][j - 1] &&
+                depth > grid[i + 1][j] && depth > grid[i][j + 1])
+                grid[i][j] = 'X';
+        }
+    }
+    
+    return grid;
+}
