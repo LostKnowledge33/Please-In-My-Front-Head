@@ -1,0 +1,24 @@
+struct Matrix
+{
+    Matrix() {}; 
+    Matrix(vector<vector<int>>& data) { a = data; }
+    
+    vector<vector<int>> a;
+};
+
+Matrix operator+ (Matrix& inA, Matrix& inB)
+{
+    vector<vector<int>> c;
+    c.resize(inA.a.size());
+    
+    for(unsigned long i = 0; i < inA.a.size(); i++)
+    {
+        c[i].resize(inA.a[i].size());    
+        for(unsigned long j = 0; j < inA.a[i].size(); j++)
+        {
+            c[i][j] = inA.a[i][j] + inB.a[i][j];
+        }
+    }
+    
+    return Matrix(c);   
+}
