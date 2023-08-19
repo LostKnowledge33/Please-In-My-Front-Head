@@ -1,0 +1,83 @@
+#include <algorithm>
+
+//Define the structs Workshops and Available_Workshops.
+//Implement the functions initialize and CalculateMaxWorkshops
+
+struct Workshop
+{
+    Workshop(int start, int duration)
+        : start(start), duration(duration) { end = start + duration; }
+        
+    int start, duration, end;
+};
+
+struct Available_Workshops
+{
+private:
+    int n;
+    
+    vector<Workshop> v_Workshops;
+    
+public:
+    Available_Workshops(vector<Workshop> Workshops, int n)
+        : v_Workshops(Workshops), n(n) { }
+    
+    int GetN() { return n; }
+    
+    Workshop GetWorkshop(int i) { return v_Workshops[i]; }
+};
+
+bool cmp(Workshop& e1, Workshop& e2)
+{
+    if(e1.end < e2.end) return true;
+    else return false;
+}
+
+Available_Workshops* initialize(int* start_time, int* duration, int n)
+{
+    vector<Workshop> temp;
+    
+    for(int i = 0; i < n; i++)
+    {
+        temp.push_back(Workshop(start_time[i], duration[i]));
+    }
+    
+    sort(temp.begin(), temp.end(), cmp);
+    
+    return new Available_Workshops(temp, n);
+}
+
+int CalculateMaxWorkshops(Available_Workshops* input)
+{
+    int endtime = 0, answer = 0;
+    for(int i = 0; i < input->GetN(); i++)
+    {
+        if(endtime <= input->GetWorkshop(i).start)
+        {
+            endtime = input->GetWorkshop(i).end;
+            answer++;
+        }
+    }
+    
+    return answer;
+}
+
+int main(int argc, char *argv[]) {
+    int n; // number of workshops
+    cin >> n;
+    // create arrays of unknown size n
+    int* start_time = new int[n];
+    int* duration = new int[n];
+
+    for(int i=0; i < n; i++){
+        cin >> start_time[i];
+    }
+    for(int i = 0; i < n; i++){
+        cin >> duration[i];
+    }
+
+    Available_Workshops * ptr;
+    ptr = initialize(start_time,duration, n);
+    cout << CalculateMaxWorkshops(ptr) << endl;
+    return 0;
+}
